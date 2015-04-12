@@ -1,0 +1,492 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@mixin transform($x: 0, $y: 0, $deg: 0){
+	-moz-transform: rotate($deg) translate($x, $y);
+    -ms-transform: rotate($deg) translate($x, $y); 
+    -webkit-transform: rotate($deg) translate($x, $y);
+    transform: rotate($deg) translate($x, $y);
+}
+
+@mixin hoverTransition($sec: 0.5s , $background_color: black, $color: white, $border_color: black){
+	transition: color, background, broder-color, $sec;
+	&:hover{
+		background: $background_color;
+		color: $color;
+		border-color: $border_color;
+	}
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
+@mixin blur-all {
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+}
+
+html, body, div, article, section, a, ul, ol, li, h3, img, input, form, textarea {
+	background: none;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+	outline: none;
+	box-sizing: border-box;
+}
+
+input[type='text'], input[type='password'], textarea {
+	@include placeholder {
+		text-transform: uppercase;
+		font-weight: bold;
+		color: white;
+	}
+}
+
+.error-highlight {
+	outline: none;
+    border-color: red;
+    box-shadow: inset 0 0 1000px red;
+}
+html {
+	font-family: sans-serif;
+	font-size: 0.92em;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+img {
+	display: block;
+}
+
+h3 {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.btn {
+	cursor: pointer;
+	color: white;
+}
+
+.frontpage {
+	position: relative;
+
+}
+
+.hidden {
+	display: none !important;
+}
+
+.clearfix:after{
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.container {
+	display: block;
+	position: relative;
+
+	&:after{
+		@extend .clearfix:after;
+	}
+
+	> * {
+		display: block;
+	}
+}
+
+h3 {
+	letter-spacing: 5px;
+	text-transform: uppercase;
+}
+
+.header {
+	height: 100vh;
+	position: relative;
+	background: url("http://i.imgur.com/aFgMq24.png") no-repeat;
+	background-size: 100% auto;
+	opacity: 0.8;
+
+	& > * {
+		opacity: 1;
+		font-weight: bold;
+	}
+	h3 {
+		font-weight: bold;
+	}
+	.company-title {
+		color: white;
+		position: absolute;
+		top: 20px;
+		left: 50%;
+		@include transform(-50%);
+	}
+
+	.btns-container {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 20px 20px 0 0;
+
+		& > * {
+			padding: 10px;
+			font-size: 12px;
+			letter-spacing: 2px;
+			font-weight: bold;
+			text-transform: uppercase;;
+		}
+		.get-started {
+			background: red;
+			color: black;
+			@include hoverTransition(0.7s ,white, black, white);
+		}
+		.log-in {
+			border-bottom: 2px solid white;
+			color: white;
+			margin-right: 15px;
+		}
+
+		.log-in-container{
+			padding: 0;
+
+			& > * {
+				padding: 10px;
+				color: white;
+				letter-spacing: 2px;
+				border-bottom: 2px solid white;
+				margin-right: 15px;
+			}
+			
+		}
+	}
+
+	.sign-up{
+		position: absolute;
+		border: 4px solid white;
+		padding: 10px 20px;
+		color: white;
+		bottom: 20px;
+		left: 50%;
+		@include transform(-50%);
+		@include hoverTransition(0.5s, red, black, transparent);
+	
+	}
+}
+
+
+.info-list {
+	margin: 0 auto;
+	width: 60%;
+}
+
+.info-logo {
+	width: 200px;
+	height: auto;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+.info-container {
+	width: 100%;
+	padding: 10px;
+	position: relative;
+	margin: 100px 0;
+	h3 {
+		margin-bottom: 20px;
+		text-align: left;
+	}
+
+	article {
+		line-height: 1.7;
+	}
+}
+
+.logo-container {
+	position: relative;
+	width: 40%;
+	height: 100%;
+}
+
+.article-container {
+	position: relative;
+	width: 60%;
+}
+
+
+
+.footer {
+	margin-top: 20px;
+
+	h3 {
+		display: block;
+		float:left;
+		color: black;
+		margin-left: 50%;
+		@include transform(-50%);
+		margin-bottom: 50px;
+
+		border: 4px solid black;
+		padding: 10px;
+		@include hoverTransition;
+	}
+
+	.container {
+		display: block;
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.copyright {
+		border-top: 1px solid black;
+		padding: 20px 0;
+	}
+}
+
+.modal-window {
+	
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	@include transform(-50%);
+
+	width: 30%;
+	min-width: 300px;
+	padding: 20px 10px 0 10px;
+	border: 4px solid white;
+
+	.blur-background {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		right: 2px;
+		bottom: 2px;
+		background: url("http://i.imgur.com/aFgMq24.png") no-repeat;
+		background-size: 333% auto;
+		background-position: 52% 15%;
+		@include blur-all;
+	}
+	h3 {
+		position: relative;
+		border-bottom: 20px;
+		color: white;
+	}
+
+	form {
+		width: 100%;
+	}
+
+	input:not(:last-child) {
+		width: 100%;
+		height: 30px;
+		color: white;
+		border-bottom: 2px solid white;
+		padding-left: 15px;
+		margin-top: 20px;
+		@include placeholder {
+			color:white;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+	}
+
+
+	.sign-up{
+		background: white;
+		color: black;
+		padding: 10px;
+		width: 50%;
+		margin: 30px auto;
+		font-weight: bold;
+		@include hoverTransition(0.5s, black, white, black);
+	}
+}
+
+.avatar {
+	height: auto;
+	width: 200px;
+	border: 2px solid white;
+	margin-right: 20px;
+}
+
+.navbar{
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left:0;
+	right: 0;
+	background: #333;
+	padding-left: 20px;
+	padding-right: 10px;
+
+	.navbar-btns {
+		width: 50%;
+		margin-top: 10px;
+
+		.btn {
+			padding: 10px;	
+			background: #ccc;
+			border-bottom: 2px solid #ccc;
+			@include hoverTransition(0.5s, black, white, black)
+		}
+	}
+
+	.search-bar-container{
+		position: relative;
+		width: 50%;
+		padding: 10px 0;
+		.search-bar {
+			width:61%;
+			input {
+				padding: 10px;
+				color: white;
+			}
+			input[type='text']{
+				background: #333;
+				width: 80%;
+				border-left: 1px solid white;
+				border-top: 1px solid white;
+				border-bottom: 1px solid white;
+			}
+		}
+
+		.update-btn, .follow-btn, .search-btn, .unfollow-btn {
+			border: 1px solid orange;
+			padding: 10px;
+			background: orange;
+		}
+
+		form {
+			margin: 0 5px;
+		}
+
+	}
+}
+
+.main-container {
+	background: #666;
+	width: 100%;
+	padding-top: 100px;
+	padding-bottom: 150px;
+	color: white;
+
+	h3 {
+		text-align: left;
+		margin-bottom: 10px;
+	}
+	& > * {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.bio-view-container {
+		width: 79%%;
+		float: left;
+	}
+
+	.bio {
+		padding: 10px 0;
+		line-height: 1.7;
+		letter-spacing: 2px;
+	}
+	.message-btn {
+		float: left;
+		background: yellow;
+		padding: 10px;
+		color: black;
+	}
+}
+
+.edit-view-container {
+	.avatar-container, .background-img-container {
+		border: 1px solid blue;
+		width: 18%;
+		position: relative;
+		input{
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+		}
+		.hover-opaque-msg {
+			position: absolute;
+			width: 100%;
+			color: white;
+			opacity: 0;
+			transition: all 0.5s;
+		}
+		&:hover .hover-opaque-msg {
+			opacity: 0.8;
+		}
+	}
+	.middle-container {
+		width: 60%;
+		padding: 0 10px;
+		.container {
+			width: 100%;
+			margin: 0 20px;
+		}
+		.top-container {
+			margin-bottom: 10px;
+		}
+		.top-container > * {
+			float: left;
+			border: 2px solid white;
+			width: 18%;
+			padding: 10px;
+		}
+		.top-container > *:not(:select){
+			color: white;
+		}
+		.top-container > *:not(:last-child){
+			margin-right: 10px;
+		}
+
+		textarea {
+			width: 96.5%;
+			height: 200px;
+			color: white;
+			border: 2px solid white;
+			padding: 10px;
+			@include placeholder {
+				font-style: italic;
+			}
+		}
+	}
+
+	.background-img-container {
+		margin-left: 20px;
+	}
+
+}
