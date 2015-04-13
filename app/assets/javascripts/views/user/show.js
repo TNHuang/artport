@@ -16,6 +16,7 @@ Artcircle.Views.UserShow = Backbone.CompositeView.extend({
 		"click .edit-profile-view": "toggleEditView",
 		"click .update-btn": "updateProfile",
 		"click .expand-btn": "toggleNavbarBtns",
+		"submit form.search-bar": "searchProjects"
 	},
 
 	render: function(){
@@ -66,6 +67,12 @@ Artcircle.Views.UserShow = Backbone.CompositeView.extend({
 				console.log(error.responseJSON.error);
 			}
 		})
+	},
+
+	searchProjects: function(event){
+		event.preventDefault();
+		var searchParams = $(event.currentTarget).serializeJSON();
+		console.log(searchParams)
 	}
 
 })
