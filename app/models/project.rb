@@ -6,6 +6,6 @@ class Project < ActiveRecord::Base
 
 	validates :author_id, :project_url, presence: true
 	acts_as_taggable
-	acts_as_taggable_on :project_name,
-	
+	acts_as_taggable_on :project_name
+
 end
