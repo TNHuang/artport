@@ -39,7 +39,7 @@ gem 'geocoder'
 gem 'pg_search'
 gem 'kaminari'
 
-gem 'paperclip', "~> 4.2"
+# gem 'paperclip', "~> 4.2"
 gem 'acts-as-messageable'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem "acts_as_follower"
