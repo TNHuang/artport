@@ -1,14 +1,14 @@
 <div class='avatar-container container left'>
 	<img src="http://i.imgur.com/2kr3TIL.jpg" class='avatar left'>
 	<div class='hover-opaque-msg'>place background image here</div>
-	<input type='file' name='user[avatar]'  class='btn'>
+	<input type='file' name='users[avatar]'  class='btn'>
 </div>
 <div class='middle-container container left'>
 	<div class='top-container container'>
-		<input type='text' name="user[first_name]" placeholder='First name'>
-		<input type='text' name="user[last_name]" placeholder='last name'>
-		<select name='user[profession]'>
-			<option selected='selected' disabled='disabled'>profession</option>
+		<input type='text' name="users[first_name]" placeholder='First name' value='<%= user.escape("first_name") %>'>
+		<input type='text' name="users[last_name]" placeholder='last name' value='<%= user.escape("last_name") %>'>
+		<select name='users[profession]'>
+			<option disabled='disabled' value=''>profession</option>
 			<option value='musician'>musician</option>
 			<option value='visual artist'>visual artist</option>
 			<option value='designer'>designer</option>
@@ -17,17 +17,17 @@
 			<option value='director'>director</option>
 			<option value='actor'>actor</option>
 		</select>
-		<input type='text' name="user[city]" placeholder='city'>
-		<input type='text' name="user[country_state]" placeholder='country/state'>
+		<input type='text' name="users[city]" placeholder='city' value='<%= user.escape("city") %>'>
+		<input type='text' name="users[country_state]" placeholder='country/state' value='<%= user.escape("country_state") %>'>
 	</div>
 	<div class='textarea-container container'>
-		<textarea class='bio' name='user[bio]' placeholder='Tell every body about your self'></textarea>
+		<textarea class='bio' name='users[bio]' placeholder='Tell every body about your self'><%= user.escape("bio") %></textarea>
 	</div>
 </div>
 
 <div class='background-img-container container left'>
 	<img src="http://i.imgur.com/2kr3TIL.jpg" class='avatar left'>
 	<div class='hover-opaque-msg'>place background image here</div>
-	<input type='file' name='user[background_url]' class='btn'>
+	<input type='file' name='users[background_image_url]' class='btn'>
 </div>
 

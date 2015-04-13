@@ -1,6 +1,4 @@
 class Api::UsersController < ApplicationController
-  # before_filter :api_require_signed_out, only: [:new, :create]
-  # before_filter :require_current_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -26,7 +24,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      render json: {}
+      render json: { message: "update success"}
     else
       render json: { error: @user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -40,7 +38,9 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :first_name, :last_name,
+                                  :profession, :city, :country_state, :bio,
+                                  :tag_list, :password, :password_confirmation)
   end
 
   def require_current_user

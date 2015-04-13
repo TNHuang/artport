@@ -1,0 +1,15 @@
+<img src="<%= project.escape('project_url')%>" class='project-img left'>
+<div class='project-name'><%= project.escape('project_name')%></div>
+<% if (Artcircle.current_user.id === project.get('author_id')) { %>
+	<div class='delete-project-btn btn'>&times</div>
+<% } %>
+
+<form class='add-tag container'>
+	<input type='text' name="project[tag_list]" placeholder='enter tags list' class='left'>
+
+	<input type='submit' value='add tags' class='left btn'>
+</form>
+<% if (project.escape('tags')){ %>
+	<div class='tags-container'>tags: <%= project.escape('tags')%></div>
+<% } %>
+

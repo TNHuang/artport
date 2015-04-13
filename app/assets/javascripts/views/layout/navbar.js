@@ -9,7 +9,6 @@ Artcircle.Views.Navbar = Backbone.CompositeView.extend({
 	},
 
 	events: {
-		"submit form.search-bar": "search",
 		"click .log-out": "logOut",
 		"click .log-out-all": "logOutAllSessions"
 	},
@@ -20,10 +19,6 @@ Artcircle.Views.Navbar = Backbone.CompositeView.extend({
 		return this;
 	},
 
-	search: function(event){
-		event.preventDefault();
-		
-	},
 
 	logOut: function(){
 		$.ajax({

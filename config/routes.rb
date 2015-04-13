@@ -10,7 +10,14 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create, :destroy]
     delete "/sessions/sign_out_all", to: "sessions#sign_out_all_sessions", as: "sign_out_all"
 
-    resources :users
+    resources :users do
+      get "/projects/search", to: "projects#search_by_tag", as: "search_by_tag"
+      resources :projects, only: [:index, :show, :create, :destroy, :update]
+      post "/projects/:id/add_tag", to: "projects#add_tag", as: "add_tag"
+      delete "/projects/:id/remove_tag", to: "projects#remove_tag", as: "remove_tag"
+
+    end
+
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

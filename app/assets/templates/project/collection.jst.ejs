@@ -1,0 +1,9 @@
+<% if (Artcircle.current_user.id === user.id) { %>
+	<form class='project-creation container'>
+		<input type='text' name='projects[project_url]' placeholder='enter project url' class='left project-url-field'>
+		<input type='hidden' name='projects[author_id]' value="<%= Artcircle.current_user.id%>">
+		<input type='submit' value='add' class='btn right'>
+	</form>
+<% } %>
+
+<div class='projects-collection-container container'></div>

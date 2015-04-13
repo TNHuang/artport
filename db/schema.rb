@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412162524) do
+ActiveRecord::Schema.define(version: 20150412213020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,9 +114,18 @@ ActiveRecord::Schema.define(version: 20150412162524) do
     t.string   "background_image_url_content_type"
     t.integer  "background_image_url_file_size"
     t.datetime "background_image_url_updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "profession"
+    t.string   "city"
+    t.string   "country_state"
+    t.text     "bio"
   end
 
+  add_index "users", ["city"], name: "index_users_on_city", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["first_name"], name: "index_users_on_first_name", using: :btree
+  add_index "users", ["last_name"], name: "index_users_on_last_name", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

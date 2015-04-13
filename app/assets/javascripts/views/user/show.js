@@ -15,6 +15,7 @@ Artcircle.Views.UserShow = Backbone.CompositeView.extend({
 		"click .profile-view": "toggleProfileView",
 		"click .edit-profile-view": "toggleEditView",
 		"click .update-btn": "updateProfile",
+		"click .expand-btn": "toggleNavbarBtns",
 	},
 
 	render: function(){
@@ -23,11 +24,13 @@ Artcircle.Views.UserShow = Backbone.CompositeView.extend({
 
 		this.navbarview = this.navbarview || new Artcircle.Views.Navbar({parentview: this, user: this.user});
 		this.profileview = this.profileview || new Artcircle.Views.ProfileView({user: this.user});
-		this.editprofileview = this.editprofileview || new Artcircle.Views.ProfileEdit({user: this.user});
+		this.editprofileview = this.editprofileview || new Artcircle.Views.ProfileEdit();
+		this.collectionView = this.collectionView || new Artcircle.Views.ProjectsCollection({user: this.user, collection: this.user.projects()});
 		
 		this.addSubview(".navbar-container", this.navbarview);
 		this.addSubview(".main-container", this.profileview);
 		this.addSubview(".main-container", this.editprofileview);
+		this.addSubview(".main-container", this.collectionView);
 		return this;
 	},
 
@@ -39,15 +42,30 @@ Artcircle.Views.UserShow = Backbone.CompositeView.extend({
 	},
 
 	toggleEditView: function(){
+		Backbone.history.navigate("users/" + Artcircle.current_user.id, { trigger: true});
 		this.undisplay(".profile-view-container");
 		this.undisplay(".follow-btn");
 		this.$(".edit-view-container").removeClass("hidden");
 		this.$(".update-btn").removeClass("hidden");
 	},
 
+	toggleNavbarBtns: function(){
+		this.$(".log-out").toggleClass("hidden");
+		this.$(".log-out-all").toggleClass("hidden");
+		this.$(".edit-profile-view").toggleClass("hidden");
+		this.$(".profile-view").toggleClass("hidden");
+	},
+
 	updateProfile: function(event){
 		var profileParams = $("form.edit-view-container").serializeJSON();
-		console.log(profileParams);
+		this.user.save(profileParams["users"], {
+			success: function(model, response){
+				console.log(response.message)
+			}.bind(this), 
+			error: function(model, error){
+				console.log(error.responseJSON.error);
+			}
+		})
 	}
 
 })
